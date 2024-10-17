@@ -12,7 +12,19 @@ function calcAverageCalories(days) {
     // Обчислюємо середнє значення калорій
     const averageCalories = totalCalories / days.length;
 
-    return averageCalories; // Повертаємо середнє значення
+    // Додаємо умови для виведення повідомлення
+    let message = "";
+    if (averageCalories > 3000) {
+        message = "Спортсмен споживає достатню кількість калорій.";
+    } else if (averageCalories < 2000) {
+        message = "Спортсмен не споживає достатню кількість калорій.";
+    }
+
+    // Повертаємо об'єкт з середнім значенням та повідомленням
+    return {
+        average: averageCalories.toFixed(2), // Форматуємо до двох десяткових знаків
+        message: message
+    };
 }
 
 // Функція для виведення результатів у outputDiv
@@ -31,7 +43,9 @@ let weeklyCalories = [
     { day: "saturday", calories: 3280 },
     { day: "sunday", calories: 3300 }
 ];
-outputDiv(`Середнє значення калорій: ${calcAverageCalories(weeklyCalories)}`); // 3180
+const result1 = calcAverageCalories(weeklyCalories);
+outputDiv(`Середня кількість калорій: ${result1.average}`); // 3180.00
+outputDiv(result1.message); // Виведе "Спортсмен споживає достатню кількість калорій."
 
 weeklyCalories = [
     { day: "monday", calories: 2040 },
@@ -42,6 +56,16 @@ weeklyCalories = [
     { day: "saturday", calories: 2280 },
     { day: "sunday", calories: 2610 }
 ];
-outputDiv(`Середнє значення калорій: ${calcAverageCalories(weeklyCalories)}`); // 2270
+const result2 = calcAverageCalories(weeklyCalories);
+outputDiv(`Середня кількість калорій: ${result2.average}`); // 2270.00
+outputDiv(result2.message); // Не має повідомлення
 
-outputDiv(`Середнє значення калорій для порожнього масиву: ${calcAverageCalories([])}`); // 0
+weeklyCalories = [
+    { day: "monday", calories: 1400 },
+    { day: "tuesday", calories: 1600 }
+];
+const result3 = calcAverageCalories(weeklyCalories);
+outputDiv(`Середня кількість калорій: ${result3.average}`); // 1500.00
+outputDiv(result3.message); // "Спортсмен не споживає достатню кількість калорій."
+
+outputDiv(`Середня кількість калорій для порожнього масиву: ${calcAverageCalories([]).average}`); // 0.00
