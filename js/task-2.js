@@ -11,7 +11,6 @@ function calcAverageCalories(days) {
     return totalCalories / days.length;
 }
 
-// Функція для виведення результатів у outputDiv
 function displayCalories() {
     let outputDiv = document.getElementById('outputDiv'); // Знаходимо елемент outputDiv
 
@@ -42,6 +41,4 @@ function displayCalories() {
     let average3 = calcAverageCalories([]);
     outputDiv.innerHTML += `Середня кількість калорій: ${average3.toFixed(2)}<br>`; // Виводимо середнє значення
 }
-
-// Викликаємо функцію для виведення результатів
 displayCalories();
